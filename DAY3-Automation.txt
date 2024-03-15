@@ -125,18 +125,36 @@ ansible_connection=network_cli
 ansible_port=22
 ansible_network_os=ios
 
+
+[ap]
+10.41.10.3
+
+[ap:vars]
+ansible_user=admin
+ansible_password=pass
+ansible_connection=network_cli
+ansible_port=22
+ansible_network_os=ios
+
 ********************************************************************
+
+@ CMD
+route add 10.0.0.0 mask 255.0.0.0 10.41.1.4
+
+
 @@ CENTOS
 ping 10.41.1.4
 ping 10.41.100.8
+ping 10.41.10.3
 
 ! COREBABA
-ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes256-cbc admin@10.41.1.4
+!ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes256-cbc admin@10.41.1.4
 
 ! CUCM
 ssh admin@10.41.100.8
 
-
+!ACCESS POINT
+ssh admin@10.41.10.3
 
 
 
@@ -145,6 +163,6 @@ ssh admin@10.41.100.8
 
 REMOVE SSH 
 
-ssh-keygen -f "/root/.ssh/known_hosts" -R "10.31.1.4"
-ssh-keygen -f "/root/.ssh/known_hosts" -R "10.31.100.8"
+ssh-keygen -f "/root/.ssh/known_hosts" -R "10.41.1.4"
+ssh-keygen -f "/root/.ssh/known_hosts" -R "10.41.100.8"
 ! ssh-keygen -f "/root/.ssh/known_hosts" -R "10._._.1
