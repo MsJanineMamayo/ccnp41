@@ -1,5 +1,5 @@
 ---
-- name: Configure ACCESS POINT
+#- name: Configure ACCESS POINT
   hosts: ap
   gather_facts: no
   become: yes
